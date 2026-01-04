@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MIRRORMIND AI | Personal AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        /* CHAT CONTAINER */
+        .chat-container {
+            height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        /* CHAT BUBBLES */
+        .message {
+            max-width: 75%;
+            padding: 14px 18px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            color: #000;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .ai-message {
+            background: rgba(0,0,0,0.5);
+            border-bottom-left-radius: 5px;
+        }
+
+        /* INPUT AREA */
+        .chat-input-area {
+            background: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            background: rgba(0,0,0,0.4);
+            border: none;
+            color: #fff;
+            padding: 14px;
+            border-radius: 15px;
+        }
+
+        .chat-input:focus {
+            box-shadow: none;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+        }
+
+        .btn-chat {
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            border: none;
+            color: #000;
+            font-weight: 600;
+            border-radius: 15px;
+            padding: 0 18px;
+            transition: 0.3s;
+        }
+
+        .btn-chat:hover {
+            transform: scale(1.05);
+        }
+
+        /* STATUS BAR */
+        .status-bar {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* TYPING */
+        .typing {
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            🤖 MIRRORMIND AI — <small class="opacity-75">Your Personal Cognitive Mirror</small>
+        </span>
+        <span class="status-bar">
+            MBTI: <strong>INTJ</strong> |
+            Emotion: <strong>Calm 😊</strong>
+        </span>
+    </div>
+</nav>
+
+<!-- CHAT -->
+<div class="chat-container">
+
+    <div class="chat-box" id="chatBox">
+        <div class="message ai-message">
+            Hello! I am your personalized AI model.  
+            I think and respond the way *you* would.  
+            How can I help you today?
+        </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="chat-input-area mt-3">
+        <input type="text" id="userInput" class="form-control chat-input"
+               placeholder="Type your message...">
+        <button class="btn btn-chat" onclick="sendMessage()">
+            <i class="bi bi-send"></i>
+        </button>
+        <button class="btn btn-chat" onclick="startVoice()">
+            <i class="bi bi-mic"></i>
+        </button>
+    </div>
+
+</div>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (!text) return;
+
+        addMessage(text, "user-message");
+        userInput.value = "";
+
+        showTyping();
+
+        setTimeout(() => {
+            removeTyping();
+            addMessage(generateAIResponse(text), "ai-message");
+        }, 1200);
+    }
+
+    function addMessage(text, className) {
+        const msg = document.createElement("div");
+        msg.className = "message " + className;
+        msg.innerText = text;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function showTyping() {
+        const typing = document.createElement("div");
+        typing.id = "typing";
+        typing.className = "message ai-message typing";
+        typing.innerText = "MIRRORMIND AI is thinking...";
+        chatBox.appendChild(typing);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function removeTyping() {
+        const typing = document.getElementById("typing");
+        if (typing) typing.remove();
+    }
+
+    function generateAIResponse(userText) {
+        // Placeholder for Django + TensorFlow backend
+        return "Based on your personality and current emotional state, I believe this is the best decision-oriented response for you.";
+    }
+
+    /* VOICE INPUT */
+    function startVoice() {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert("Speech recognition not supported");
+            return;
+        }
+
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-US";
+        recognition.start();
+
+        recognition.onresult = function(event) {
+            userInput.value = event.results[0][0].transcript;
+            sendMessage();
+        };
+    }
+
+    userInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sendMessage();
+    });
+</script>
+
+</body>
+</html>

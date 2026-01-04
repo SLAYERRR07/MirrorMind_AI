@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MIRRORMIND AI | MBTI Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .test-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: fadeIn 1s ease;
+        }
+
+        .question-card {
+            background: rgba(0,0,0,0.35);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        .progress {
+            height: 10px;
+            border-radius: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            color: #000;
+            font-weight: 600;
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,229,255,0.6);
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0,0,0,0.7);
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">MIRRORMIND AI</a>
+    </div>
+</nav>
+
+<div class="container" style="margin-top:120px;">
+    <div class="test-container">
+
+        <h2 class="text-center mb-3"><i class="bi bi-clipboard-check"></i> MBTI Personality Test</h2>
+        <p class="text-center mb-4">Answer honestly — there are no right or wrong answers.</p>
+
+        <!-- Progress -->
+        <div class="progress mb-4">
+            <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        </div>
+
+        <form id="mbtiForm">
+
+            <!-- QUESTIONS -->
+            <!-- E vs I -->
+            <div class="question-card">
+                <p><strong>1.</strong> I feel energized after spending time with a group of people.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>2.</strong> I prefer deep one-on-one conversations over group discussions.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>3.</strong> I enjoy being the center of attention.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>4.</strong> I need quiet time alone to recharge.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>5.</strong> I usually speak before fully thinking things through.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <!-- S vs N -->
+            <div class="question-card">
+                <p><strong>6.</strong> I focus more on facts than ideas.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>7.</strong> I enjoy thinking about future possibilities.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>8.</strong> I trust experience more than intuition.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>9.</strong> I like abstract theories and concepts.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>10.</strong> I prefer practical solutions over imaginative ones.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <!-- T vs F -->
+            <div class="question-card">
+                <p><strong>11.</strong> I make decisions based on logic rather than emotions.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>12.</strong> I value harmony more than being right.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>13.</strong> I find it easy to remain objective during conflicts.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>14.</strong> I often consider how my decisions affect others.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>15.</strong> I prioritize fairness over compassion.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <!-- J vs P -->
+            <div class="question-card">
+                <p><strong>16.</strong> I like having a detailed plan.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>17.</strong> I prefer flexibility over strict schedules.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>18.</strong> I complete tasks well before deadlines.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>19.</strong> I enjoy spontaneous activities.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <div class="question-card">
+                <p><strong>20.</strong> I feel stressed when plans suddenly change.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <label class="form-check-label">Strongly Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <label class="form-check-label">Agree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <label class="form-check-label">Neutral</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <label class="form-check-label">Disagree</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <label class="form-check-label">Strongly Disagree</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit w-100 mt-4">
+                <i class="bi bi-brain"></i> Submit & Analyze Personality
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 <span style="color:#00e5ff;">MIRRORMIND AI</span> | MBTI Personalization Engine</p>
+</footer>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const radios = document.querySelectorAll("input[type='radio']");
+    const progressBar = document.getElementById("progressBar");
+    const totalQuestions = 20;
+
+    radios.forEach(radio => {
+        radio.addEventListener("change", updateProgress);
+    });
+
+    function updateProgress() {
+        const answered = new Set();
+        radios.forEach(r => {
+            if (r.checked) answered.add(r.name);
+        });
+        const percent = (answered.size / totalQuestions) * 100;
+        progressBar.style.width = percent + "%";
+    }
+</script>
+
+</body>
+</html>
