@@ -120,10 +120,14 @@
         <div class="collapse navbar-collapse" id="navMenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'mbti' %}">MBTI Test</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'mbti_test' %}">MBTI Test</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'ai_chatbot' %}">AI Chatbot</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Sign Up</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Sign Up</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -137,8 +141,8 @@
         <div class="col-md-8">
             <div class="profile-card text-center">
                 <img src="https://i.pravatar.cc/300" class="profile-img mb-3" alt="User">
-                <h3 id="username">John Doe</h3>
-                <p class="mb-1">MBTI Type: <strong id="mbti">INTJ</strong></p>
+                <h3 id="username">{{ user.get_full_name|default:user.username }}</h3>
+                <p class="mb-1">MBTI Type: <strong id="mbti">{{ mbti_type }}</strong></p>
                 <p>Personal AI Status: <span class="badge bg-success">Active</span></p>
             </div>
         </div>

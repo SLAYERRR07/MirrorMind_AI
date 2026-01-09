@@ -103,7 +103,17 @@
             <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
         </div>
 
-        <form id="mbtiForm">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form id="mbtiForm" method="POST" action="{% url 'mbti_test' %}">
+            {% csrf_token %}
 
             <!-- QUESTIONS -->
             <!-- E vs I -->
@@ -134,23 +144,23 @@
             <div class="question-card">
                 <p><strong>2.</strong> I prefer deep one-on-one conversations over group discussions.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q2" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q2" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q2" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q2" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q2" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -158,23 +168,23 @@
             <div class="question-card">
                 <p><strong>3.</strong> I enjoy being the center of attention.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q3" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q3" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q3" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q3" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q3" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -182,23 +192,23 @@
             <div class="question-card">
                 <p><strong>4.</strong> I need quiet time alone to recharge.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q4" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q4" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q4" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q4" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q4" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -206,23 +216,23 @@
             <div class="question-card">
                 <p><strong>5.</strong> I usually speak before fully thinking things through.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q5" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q5" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q5" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q5" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q5" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -231,23 +241,23 @@
             <div class="question-card">
                 <p><strong>6.</strong> I focus more on facts than ideas.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q6" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q6" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q6" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q6" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q6" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -255,23 +265,23 @@
             <div class="question-card">
                 <p><strong>7.</strong> I enjoy thinking about future possibilities.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q7" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q7" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q7" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q7" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q7" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -279,23 +289,23 @@
             <div class="question-card">
                 <p><strong>8.</strong> I trust experience more than intuition.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q8" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q8" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q8" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q8" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q8" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -303,23 +313,23 @@
             <div class="question-card">
                 <p><strong>9.</strong> I like abstract theories and concepts.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q9" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q9" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q9" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q9" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q9" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -327,23 +337,23 @@
             <div class="question-card">
                 <p><strong>10.</strong> I prefer practical solutions over imaginative ones.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q10" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q10" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q10" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q10" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q10" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -352,23 +362,23 @@
             <div class="question-card">
                 <p><strong>11.</strong> I make decisions based on logic rather than emotions.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q11" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q11" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q11" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q11" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q11" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -376,23 +386,23 @@
             <div class="question-card">
                 <p><strong>12.</strong> I value harmony more than being right.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q12" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q12" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q12" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q12" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q12" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -400,23 +410,23 @@
             <div class="question-card">
                 <p><strong>13.</strong> I find it easy to remain objective during conflicts.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q13" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q13" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q13" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q13" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q13" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -424,23 +434,23 @@
             <div class="question-card">
                 <p><strong>14.</strong> I often consider how my decisions affect others.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q14" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q14" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q14" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q14" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q14" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -448,23 +458,23 @@
             <div class="question-card">
                 <p><strong>15.</strong> I prioritize fairness over compassion.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q15" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q15" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q15" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q15" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q15" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -473,23 +483,23 @@
             <div class="question-card">
                 <p><strong>16.</strong> I like having a detailed plan.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q16" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q16" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q16" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q16" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q16" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -497,23 +507,23 @@
             <div class="question-card">
                 <p><strong>17.</strong> I prefer flexibility over strict schedules.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q17" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q17" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q17" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q17" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q17" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -521,23 +531,23 @@
             <div class="question-card">
                 <p><strong>18.</strong> I complete tasks well before deadlines.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q18" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q18" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q18" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q18" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q18" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -545,23 +555,23 @@
             <div class="question-card">
                 <p><strong>19.</strong> I enjoy spontaneous activities.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q19" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q19" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q19" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q19" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q19" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
@@ -569,23 +579,23 @@
             <div class="question-card">
                 <p><strong>20.</strong> I feel stressed when plans suddenly change.</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="5">
+                    <input class="form-check-input" type="radio" name="q20" value="5">
                     <label class="form-check-label">Strongly Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="4">
+                    <input class="form-check-input" type="radio" name="q20" value="4">
                     <label class="form-check-label">Agree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="3">
+                    <input class="form-check-input" type="radio" name="q20" value="3">
                     <label class="form-check-label">Neutral</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="2">
+                    <input class="form-check-input" type="radio" name="q20" value="2">
                     <label class="form-check-label">Disagree</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="q1" value="1">
+                    <input class="form-check-input" type="radio" name="q20" value="1">
                     <label class="form-check-label">Strongly Disagree</label>
                 </div>
             </div>
